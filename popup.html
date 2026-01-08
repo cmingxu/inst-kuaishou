@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>IG Watcher</title>
+  <style>
+    body {
+      width: 320px;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input, button {
+      padding: 8px;
+      margin-bottom: 5px;
+    }
+    .account-list {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      padding: 5px;
+    }
+    .account-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      border-bottom: 1px solid #eee;
+    }
+    .account-item:last-child {
+      border-bottom: none;
+    }
+    .remove-btn {
+      background-color: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+    .settings {
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    label {
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3>Instagram 监控助手</h3>
+    
+    <div>
+      <input type="text" id="accountInput" placeholder="输入用户名 (如: instagram)">
+      <button id="addBtn">添加账号</button>
+      <button id="checkNowBtn" style="background-color: #4CAF50; color: white;">立即检查</button>
+    </div>
+
+    <div class="account-list" id="accountList">
+      <!-- Accounts will be listed here -->
+    </div>
+
+    <div class="settings">
+      <label>检查间隔</label>
+      <select id="intervalSelect">
+        <option value="0.166667">10 秒</option>
+        <option value="1">1 分钟</option>
+        <option value="3">3 分钟</option>
+        <option value="5">5 分钟</option>
+        <option value="10">10 分钟</option>
+      </select>
+      
+      <label>Webhook 地址</label>
+      <input type="text" id="webhookInput" placeholder="https://api.example.com/notify">
+      
+      <button id="saveSettingsBtn">保存设置</button>
+    </div>
+    
+    <div class="settings" style="margin-top: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+        <label>活动日志</label>
+        <button id="clearLogsBtn" class="remove-btn" style="background-color: #666;">清除</button>
+      </div>
+      <div id="logPanel" style="height: 150px; overflow-y: auto; border: 1px solid #ddd; padding: 5px; font-size: 10px; font-family: monospace; background: #f9f9f9;"></div>
+    </div>
+
+    <div id="status" style="color: green; font-size: 12px; height: 15px;"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
